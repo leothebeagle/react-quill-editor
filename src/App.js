@@ -16,7 +16,7 @@ const App = () => {
     };
 
     console.log("payload: " + payload.htmlContent)
-    console.log('Template submitted successfully');
+    console.log('Template submitted successfully')
     setMode('view')
     setSelectedTemplate(content)
     console.log(mode)
@@ -41,12 +41,19 @@ const App = () => {
 }
 
 const handleSave = async (content) => {
+  setMode('view')
   console.log("I've clicked submit after editing")
+  console.log("This is the edited content: " + content)
+}
+
+const enableEditMode = () => {
+  setMode('edit')
+  console.log("enabled edit mode")
 }
 
   return (
     <Container>
-      <MessageEditor mode={mode} selectedTemplate={selectedTemplate}  handleSubmit={handleSubmit} handleSave={handleSave} />
+      <MessageEditor mode={mode} selectedTemplate={selectedTemplate}  handleSubmit={handleSubmit} handleSave={handleSave} enableEditMode={enableEditMode}/>
     </Container>
   )
 }
