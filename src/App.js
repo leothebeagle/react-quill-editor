@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import EmailTemplateEditor from './EmailTemplateEditor'
+import { Container } from '@mui/material';
+import DOMPurify from 'dompurify';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+  const handleSubmit = async (content) => {
+    const sanitizedHtmlContent = DOMPurify.sanitize(content);
+
+    const payload = {
+      htmlContent: sanitizedHtmlContent,
+    };
+
+    console.log("payload: " + payload.htmlContent)
+
+    // try {
+    //     const response = await fetch('https://example.com/api/email-template', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify(payload),
+    //     });
+  
+    //     if (!response.ok) {
+    //       throw new Error('Failed to save the template');
+    //     }
+  
+    //     console.log('Template saved successfully');
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
 }
+
+
+  return (
+    <Container>
+      <EmailTemplateEditor handleSubmit={handleSubmit} />
+    </Container>
+  )
+}
+
 
 export default App;
