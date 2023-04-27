@@ -4,7 +4,8 @@ import DOMPurify from 'dompurify';
 
 const App = () => {
 
-  
+  const [mode, setMode] = useState('create');
+  const [selectedTemplate] = useState(null);
 
   const handleSubmit = async (content) => {
     const sanitizedHtmlContent = DOMPurify.sanitize(content);
