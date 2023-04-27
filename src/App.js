@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import MessageEditor from './MessageEditor'
 import { Container } from '@mui/material';
 import DOMPurify from 'dompurify';
@@ -5,7 +6,7 @@ import DOMPurify from 'dompurify';
 const App = () => {
 
   const [mode, setMode] = useState('create');
-  const [selectedTemplate] = useState(null);
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
 
   const handleSubmit = async (content) => {
     const sanitizedHtmlContent = DOMPurify.sanitize(content);
@@ -15,7 +16,11 @@ const App = () => {
     };
 
     console.log("payload: " + payload.htmlContent)
-
+    console.log('Template submitted successfully');
+    setMode('view')
+    setSelectedTemplate(content)
+    console.log(mode)
+    console.log(selectedTemplate)
     // try {
     //     const response = await fetch('https://example.com/api/email-template', {
     //       method: 'POST',
@@ -35,13 +40,24 @@ const App = () => {
     //   }
 }
 
+const handleSave = async (content) => {
+  console.log("I've clicked submit after editing")
+}
 
   return (
     <Container>
-      <MessageEditor handleSubmit={handleSubmit} />
+      <MessageEditor mode={mode} selectedTemplate={selectedTemplate}  handleSubmit={handleSubmit} handleSave={handleSave} />
     </Container>
   )
 }
 
-
 export default App;
+
+// potential structure for what makes up a MessageTemplate:
+// {
+//   templateId: 312,
+//   templateOwner: "Aziz",
+//   templateName: "First message notification",
+//   content: "<p>some text in HTML</p>"
+// }
+
