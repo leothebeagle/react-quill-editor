@@ -1,8 +1,10 @@
-import EmailTemplateEditor from './EmailTemplateEditor'
+import MessageEditor from './MessageEditor'
 import { Container } from '@mui/material';
 import DOMPurify from 'dompurify';
 
 const App = () => {
+
+  
 
   const handleSubmit = async (content) => {
     const sanitizedHtmlContent = DOMPurify.sanitize(content);
@@ -35,7 +37,7 @@ const App = () => {
 
   return (
     <Container>
-      <EmailTemplateEditor handleSubmit={handleSubmit} />
+      <MessageEditor handleSubmit={handleSubmit} />
     </Container>
   )
 }

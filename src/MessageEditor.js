@@ -3,7 +3,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Button, Container } from '@mui/material';
 
-const EmailTemplateEditor = ({handleSubmit}) => {
+const MessageEditor = ({handleSubmit}) => {
     const [content, setContent] = useState('');
     
     const handleChange = (value) => {
@@ -22,4 +22,4 @@ const EmailTemplateEditor = ({handleSubmit}) => {
     )
 }
 
-export default EmailTemplateEditor;
+export default MessageEditor;
