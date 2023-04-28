@@ -16,11 +16,14 @@ const App = () => {
     };
 
     console.log("payload: " + payload.htmlContent)
-    console.log('Template submitted successfully')
+
+    mode === 'create' ? console.log('Template submitted successfully') : console.log('Template SAVED successfully ~~')
     setMode('view')
     setSelectedTemplate(content)
-    console.log(mode)
-    console.log(selectedTemplate)
+    console.log("mode before render happens is: " + mode)
+    console.log("selected template before the render is: " + selectedTemplate)
+
+    
     // try {
     //     const response = await fetch('https://example.com/api/email-template', {
     //       method: 'POST',
@@ -40,12 +43,6 @@ const App = () => {
     //   }
 }
 
-const handleSave = async (content) => {
-  setMode('view')
-  console.log("I've clicked submit after editing")
-  console.log("This is the edited content: " + content)
-}
-
 const enableEditMode = () => {
   setMode('edit')
   console.log("enabled edit mode")
@@ -53,7 +50,7 @@ const enableEditMode = () => {
 
   return (
     <Container>
-      <MessageEditor mode={mode} selectedTemplate={selectedTemplate}  handleSubmit={handleSubmit} handleSave={handleSave} enableEditMode={enableEditMode}/>
+      <MessageEditor mode={mode} selectedTemplate={selectedTemplate}  handleSubmit={handleSubmit}  enableEditMode={enableEditMode}/>
     </Container>
   )
 }
