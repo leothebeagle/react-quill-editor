@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import MessageEditor from './MessageEditor'
+import MessageTable from './MessageTable'
 import { Container } from '@mui/material';
 import DOMPurify from 'dompurify';
 
@@ -43,6 +44,7 @@ const enableEditMode = () => {
 
   return (
     <Container>
+      <MessageTable messageData={resourcesIndex}/>
       <MessageEditor mode={mode} selectedTemplate={selectedTemplate}  handleSubmit={handleSubmit}  enableEditMode={enableEditMode}/>
     </Container>
   )
