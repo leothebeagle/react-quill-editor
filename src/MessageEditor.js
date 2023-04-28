@@ -7,7 +7,6 @@ const MessageEditor = ({ mode, selectedTemplate, handleSubmit, enableEditMode })
     const [content, setContent] = useState(selectedTemplate || '');
     const readOnly = mode === 'view'
 
-
     const handleChange = (value) => {
         setContent(value)
     }
@@ -18,10 +17,6 @@ const MessageEditor = ({ mode, selectedTemplate, handleSubmit, enableEditMode })
 
     return(
         <Container>
-            <form>
-                <label>Template Owner</label>
-                <input type="text"></input>
-            </form>
             <ReactQuill value={content} onChange={handleChange} readOnly = {readOnly} />
 
         {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import MessageEditor from './MessageEditor'
 import { Container } from '@mui/material';
 import DOMPurify from 'dompurify';
@@ -7,6 +7,18 @@ const App = () => {
 
   const [mode, setMode] = useState('create');
   const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [resourcesIndex, setResourcesIndex] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+      const data = await response.json();
+      setResourcesIndex(data);
+    }
+
+    fetchData();
+  }, []);
+
 
   const handleSubmit = async (content) => {
     const sanitizedHtmlContent = DOMPurify.sanitize(content);
@@ -16,31 +28,12 @@ const App = () => {
     };
 
     console.log("payload: " + payload.htmlContent)
-
+    //to be changed to actually send off a 
     mode === 'create' ? console.log('Template submitted successfully') : console.log('Template SAVED successfully ~~')
     setMode('view')
     setSelectedTemplate(content)
     console.log("mode before render happens is: " + mode)
     console.log("selected template before the render is: " + selectedTemplate)
-
-    
-    // try {
-    //     const response = await fetch('https://example.com/api/email-template', {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: JSON.stringify(payload),
-    //     });
-  
-    //     if (!response.ok) {
-    //       throw new Error('Failed to save the template');
-    //     }
-  
-    //     console.log('Template saved successfully');
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
 }
 
 const enableEditMode = () => {
